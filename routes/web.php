@@ -11,6 +11,29 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+use App\Task;
+use Illuminate\Http\Request;
+
+
+/**
+ *タスク一覧表示
+ */
+
+Route::get('/',function(){
+//
+    return view('tasks');
+});
+
+/**
+ * 新タスク一覧
+ */
+Route::post('/',function(Request $request){
+
+});
+/**
+ * タスクの削除
+ */
+Route::delete('/task/{task}',function(Task $task){
+    //{task}という処理で消すタスクを特定し、function(Task $task)に送る
+
 });
