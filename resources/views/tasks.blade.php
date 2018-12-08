@@ -10,7 +10,7 @@
 
                 <div class="panel-body">
                     {{--Display Validation Errors--}}
-                    @include('common.errros')
+                    @include('common.errors')
 
                     {{--New Task Form--}}
                     <form action="{{url('task')}}" method="POST" class="form-horizontal">
@@ -26,7 +26,7 @@
 
                         {{--Add Task Buttom--}}
                         <div class="form-group">
-                            <div class="col-am-6">
+                            <div class="col-sm-6 col-sm-offset-3">
                                 <button type="submit" class="btn btn-default">
                                     <i class="fa fa-btn fa-plus"></i>Add Task
                                 </button>

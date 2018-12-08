@@ -34,16 +34,21 @@ Route::post('/',function(Request $request){
  * 新タスク追加
  */
 Route::post('/task',function(Request $request){
-//    下記を追記する
+//バリデーションのチェック
     $validator = Validator::make($request->all(),[
        'name' =>'required|max:255',
     ]);
     if($validator->fails()){
-        return redirect('/');
+        return redirect('/')
         ->withInput()
             ->withErrors($validator);
     }
 //    タスク作成処理
+    $task = new Task;
+    $task->name = $request->name;
+    $task->save();
+
+    return('/');
 });
 /**
  * タスクの削除
