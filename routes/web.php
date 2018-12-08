@@ -20,8 +20,11 @@ use Illuminate\Http\Request;
  */
 
 Route::get('/',function(){
-//
-    return view('tasks');
+//select表示
+    $tasks = Task::orderBy('created_at','asc')->get();
+    return view('tasks',[
+        'tasks'=>$tasks
+    ]);
 });
 
 /**
@@ -48,12 +51,13 @@ Route::post('/task',function(Request $request){
     $task->name = $request->name;
     $task->save();
 
-    return('/');
+    return redirect('/');
 });
 /**
  * タスクの削除
  */
 Route::delete('/task/{task}',function(Task $task){
     //{task}という処理で消すタスクを特定し、function(Task $task)に送る
-
+    $task->delete();
+    return redirect('/');
 });

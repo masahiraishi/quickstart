@@ -36,6 +36,44 @@
                 </div>
             </div>
             <!-- TODO: Current Tasks -->
+            @if(count($tasks) >0)
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        現在のタスク
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped task-table">
+                            <!-- テーブルヘッダー -->
+                            <thead>
+                                <th>Task</th>
+                                <th>&nbsp;</th>
+                            </thead>
+                            <!--テーブル本体 -->
+                            <tbody>
+                                @foreach($tasks as $task)
+                                    <tr>
+                                        <!-- タスク名 -->
+                                        <td class="able-text">
+                                            <div>{{$task->name}}</div>
+                                        </td>
+                                        <td>
+                                            {{--TODO削除ボタン--}}
+                                            <form action="{{url('task',$task->id)}}" method="post">
+                                                {{csrf_field()}}
+                                                {{method_field('DELETE')}}
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="fa fa-trash"></i>DELETE
+                                                </button>
+
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection
